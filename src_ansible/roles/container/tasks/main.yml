@@ -30,21 +30,20 @@
 - name: build image
   tags: build_image
   docker_image:
-    build:
-      path: ~/hashapp
-    name: hashappdck
-    tag: hashappdck/v1
+    path: ~/hashapp
+    name: hashappdck:latest
+    state: present
 
 - name: start image
   tags: start_image
   docker_container:
     name: "{{item.name}}"
-    image: hashappdck
+    image: hashappdck:latest
     state: started
     forcekill: yes
     ports:
       - "{{item.portn}}:5000"
-    with_items:
-      - { name: hashapp1 , portn: 3001 }
-      - { name: hashapp2 , portn: 3002 }
-      - { name: hashapp3 , portn: 3003 }
+  with_items:
+    - { name: hashapp1 , portn: 3001 }
+    - { name: hashapp2 , portn: 3002 }
+    - { name: hashapp3 , portn: 3003 }
