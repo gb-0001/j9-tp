@@ -22,10 +22,20 @@
     dest: ~/hashsvccli
     remote_src: yes
 
+- name: permit traffic in default zone for http service
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+
 - name: copie des sources dans /var/www/html
   copy:
     src: ~/hashsvccli/hashservice-client/*
-    dest: /var/www/html
+    dest: /var/www/html/
+    owner: apache
+    group: apache
+    mode: '0644'
     remote_src: yes
 
 
