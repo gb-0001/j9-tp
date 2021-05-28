@@ -46,7 +46,7 @@ sudo apt -y install ansible sshpass
 
 sudo apt -y install docker
 sudo pip3 install docker
-sudo pip install docker
+
 
 #Autorisation de l'acces jenkins
 ufw allow 8080/tcp
