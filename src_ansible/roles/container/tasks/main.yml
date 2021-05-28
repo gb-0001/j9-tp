@@ -30,15 +30,13 @@
     - { url1: "https://github.com/gb-0001/j9-tp/raw/master/src_microsvc/main.py" , dest1: "~/hashapp/main.py" }
 
 - name: build image
-  become: no
   tags: build_image
   docker_image:
-    path: ~/hashapp
+    path: /home/vagrant/hashapp
     name: hashappdck:latest
     state: present
 
 - name: start image
-  become: no
   tags: start_image
   docker_container:
     name: "{{item.name}}"
