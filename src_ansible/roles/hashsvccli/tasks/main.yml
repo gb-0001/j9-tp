@@ -31,7 +31,7 @@
     state: enabled
 
 - name: copie des sources dans /var/www/html
-  become: no
+  become: yes
   copy:
     src: "{{item.pathsrc}}"
     dest: "{{item.pathdst}}"
@@ -40,8 +40,8 @@
     mode: '0644'
     remote_src: yes
   with_items:
-    - { pathsrc: "~/hashsvccli/hashservice-client/index.html" , pathdst: "/var/www/html/index.html" }
-    - { pathsrc: "~/hashsvccli/hashservice-client/index.js" , pathdst: "/var/www/html/index.js" }
+    - { pathsrc: "/home/vagrant/hashsvccli/hashservice-client/index.html" , pathdst: "/var/www/html/index.html" }
+    - { pathsrc: "/home/vagrant/hashsvccli/hashservice-client/index.js" , pathdst: "/var/www/html/index.js" }
 
 
 # - name: mise a jour de l'ip
