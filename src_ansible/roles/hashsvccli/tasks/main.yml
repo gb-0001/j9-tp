@@ -17,6 +17,7 @@
     state: directory
 
 - name: Unarchive a file that needs to be downloaded (added in 2.0)
+  become: no
   unarchive:
     src: https://opusidea-training.s3.eu-west-3.amazonaws.com/divers/hashservice-client.zip
     dest: ~/hashsvccli
