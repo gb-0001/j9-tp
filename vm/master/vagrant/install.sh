@@ -37,7 +37,7 @@ if [[ $RETOUR_USER_USERJOB != 0 ]]; then
     echo 'userjob ALL=(ALL:ALL) /usr/bin/apt' | sudo EDITOR='tee -a' visudo
 fi
 
-#install git, docker
+#install git, docker ansible sshpass
 sudo apt -y install python3 python3-pip git docker docker-py ansible sshpass
 
 sudo apt -y install git
@@ -47,6 +47,8 @@ sudo apt -y install ansible sshpass
 sudo apt -y install docker
 sudo pip3 install docker
 
+#pour le fonctionnement de sshpass avec ansible
+sudo sed -i 's/#host_key_checking = False/host_key_checking = False/g' /etc/ansible/ansible.cfg
 
 #Autorisation de l'acces jenkins
 ufw allow 8080/tcp
