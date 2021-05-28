@@ -3,7 +3,7 @@
     path: ~/hashsvccli
     state: directory
 
-- name: Installation unzip 
+- name: Installation unzip
   yum:
     name: unzip
     state: present
@@ -22,14 +22,14 @@
 #     regexp: ^API_URL = "http://localhost:3000/"
 #     line: "API_URL = "http://{{'ansible_host'}}:3000/""
 
-- name: Installation httpd  
+- name: Installation httpd
   yum:
     name: httpd
     state: present
     disable_gpg_check: yes
     update_cache: true
 
-- name: start service 
+- name: start service
   service:
     name: "{{ item }}"
     state: started

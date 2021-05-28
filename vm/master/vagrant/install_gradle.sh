@@ -51,5 +51,3 @@ sudo apt -y install python3 python3-pip
 alias python='/usr/bin/python3' > ~/.bashrc
 alias pip=pip3 > ~/.bashrc
 
-#install utilitaire de test
-sudo pip install pytest
