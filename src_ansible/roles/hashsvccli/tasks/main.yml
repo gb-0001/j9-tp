@@ -3,7 +3,7 @@
     path: ~/hashsvccli
     state: directory
 
-- name: Installation unzip             - (Debug:install_package.yml )
+- name: Installation unzip 
   yum:
     name: unzip
     state: present
@@ -16,20 +16,20 @@
     dest: /var/www/html
     remote_src: yes
 
-# - name: mise a jour du fichier nsca.cfg    - (Debug:install_NSCA.yml)
+# - name: mise a jour de l'ip
 #   lineinfile:
 #     dest: /var/www/html/index.js
 #     regexp: ^API_URL = "http://localhost:3000/"
 #     line: "API_URL = "http://{{'ansible_host'}}:3000/""
 
-- name: Installation httpd             - (Debug:install_package.yml )
+- name: Installation httpd  
   yum:
     name: httpd
     state: present
     disable_gpg_check: yes
     update_cache: true
 
-- name: start service     - (Debug system_central:servicestart.yml)
+- name: start service 
   service:
     name: "{{ item }}"
     state: started
