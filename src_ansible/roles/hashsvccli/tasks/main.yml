@@ -39,8 +39,8 @@
     mode: '0644'
     remote_src: yes
   with_items:
-    - { pathsrc: ~/hashsvccli/hashservice-client/index.html , pathdst: /var/www/html/index.html}
-    - { pathsrc: ~/hashsvccli/hashservice-client/index.js , pathdst: /var/www/html/index.js }
+    - { pathsrc: "~/hashsvccli/hashservice-client/index.html" , pathdst: "/var/www/html/index.html" }
+    - { pathsrc: "~/hashsvccli/hashservice-client/index.js" , pathdst: "/var/www/html/index.js" }
 
 
 # - name: mise a jour de l'ip
