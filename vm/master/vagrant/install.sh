@@ -7,25 +7,8 @@ if [ $? = 0 ]; then
     exit 0
 fi
 
-sudo fdisk -l | grep " /dev/sdb"
-if [[ $? = 0 ]]; then
-    #creation de la partition sdb en ext4
-    (echo n
-    echo p
-    echo
-    echo
-    echo
-    echo t
-    echo
-    echo 83
-    echo w)| sudo fdisk /dev/sdb
-    sudo mkfs.ext4 /dev/sdb1
-    sudo mkdir /userjob
-    sudo mount /dev/sdb1 /userjob
-else
-    echo "/dev/sdb non présent\n"
-    exit 0
-fi
+
+sudo mkdir /userjob
 
 #mise en place du mot de passe pour vagrant
 echo 'vagrant:vagrant' | sudo chpasswd
@@ -53,6 +36,9 @@ if [[ $RETOUR_USER_USERJOB != 0 ]]; then
     sudo useradd -m userjob -d /userjob
     echo 'userjob ALL=(ALL:ALL) /usr/bin/apt' | sudo EDITOR='tee -a' visudo
 fi
+
+#install git, docker
+sudo apt -y python3 python3-pip git docker docker-py ansible sshpass
 
 #Autorisation de l'acces jenkins
 ufw allow 8080/tcp

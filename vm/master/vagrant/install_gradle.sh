@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #Test si openjdk est installé
 dpkg -l | grep openjdk-11-jdk
