@@ -1,20 +1,33 @@
+- name: Installation unzip
+  yum:
+    name: "{{item}}"
+    state: present
+    disable_gpg_check: yes
+    update_cache: true
+  with_items:
+    - unzip
+    - python
+    - python3-pip
+    - httpd
+
 - name: Creates directory ~/hashsvccli
+  become: no
   file:
     path: ~/hashsvccli
     state: directory
 
-- name: Installation unzip
-  yum:
-    name: unzip
-    state: present
-    disable_gpg_check: yes
-    update_cache: true
-
 - name: Unarchive a file that needs to be downloaded (added in 2.0)
   unarchive:
     src: https://opusidea-training.s3.eu-west-3.amazonaws.com/divers/hashservice-client.zip
+    dest: ~/hashsvccli
+    remote_src: yes
+
+- name: copie des sources dans /var/www/html
+  copy:
+    src: ~/hashsvccli/hashservice-client/*
     dest: /var/www/html
     remote_src: yes
+
 
 # - name: mise a jour de l'ip
 #   lineinfile:
@@ -22,12 +35,6 @@
 #     regexp: ^API_URL = "http://localhost:3000/"
 #     line: "API_URL = "http://{{'ansible_host'}}:3000/""
 
-- name: Installation httpd
-  yum:
-    name: httpd
-    state: present
-    disable_gpg_check: yes
-    update_cache: true
 
 - name: start service
   service:

@@ -16,5 +16,5 @@ ansible_ssh_pass=vagrant
 192.168.33.52
 
 [group2]
-192.168.33.53
+192.168.33.53 ansible_python_interpreter=/usr/bin/python
 
