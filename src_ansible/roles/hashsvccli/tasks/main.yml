@@ -1,0 +1,37 @@
+- name: Creates directory ~/hashsvccli
+  file:
+    path: ~/hashsvccli
+    state: directory
+
+- name: Installation unzip             - (Debug:install_package.yml )
+  yum:
+    name: unzip
+    state: present
+    disable_gpg_check: yes
+    update_cache: true
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: https://opusidea-training.s3.eu-west-3.amazonaws.com/divers/hashservice-client.zip
+    dest: /var/www/html
+    remote_src: yes
+
+- name: mise a jour du fichier nsca.cfg    - (Debug:install_NSCA.yml)
+  lineinfile:
+    dest: /var/www/html/index.js
+    regexp: ^API_URL = "http://localhost:3000/"
+    line: "API_URL = "http://{{'ansible_host'}}:3000/""
+
+- name: Installation httpd             - (Debug:install_package.yml )
+  yum:
+    name: httpd
+    state: present
+    disable_gpg_check: yes
+    update_cache: true
+
+- name: start service     - (Debug system_central:servicestart.yml)
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - "httpd"

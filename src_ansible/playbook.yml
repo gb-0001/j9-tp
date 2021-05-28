@@ -1,0 +1,16 @@
+-
+  name: Docker Install + container + hashsvccli
+  hosts: group1
+  become: yes # become_user: root
+  roles:
+    - docker
+    - container
+  when: (ansible_distribution == "Ubuntu")
+
+-
+  name: hashsvccli
+  hosts: group2
+  become: yes # become_user: root
+  roles:
+    - hashsvccli
+  when: (ansible_distribution == "CentOS")

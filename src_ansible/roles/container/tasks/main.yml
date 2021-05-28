@@ -13,17 +13,37 @@
   - { name: docker, version: 2.0.0 }
   - { name: docker-py, version: 1.10.6 }
 
-# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html#ansible-collections-community-docker-docker-container-module
-- name: Create MariadDb Container
-  tags: create_mariadb_container
+- name: Creates directory ~/hashapp
+  file:
+    path: ~/hashapp
+    state: directory
+
+- name: Download du dockerfile et requirement.txt
+  get_url:
+    url: "{{item.url1}}"
+    dest: "{{item.dest1}}"
+  with_items:
+    - { url1:  https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/Dockerfile , dest1: ~/hashapp/Dockerfile }
+    - { url1:  https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/requirements.txt , dest1: ~/hashapp/requirements.txt }
+
+- name: build image
+  tags: build_image
+  docker_image:
+    build:
+      path: ~/hashapp
+    name: hashappdck
+    tag: hashappdck/v1
+
+- name: start image
+  tags: start_image
   docker_container:
-    name: mariadb
-    image: mariadb
+    name: "{{item.name}}"
+    image: hashappdck
     state: started
     forcekill: yes
-    #restart: yes
     ports:
-      - 3306:3306
-    env:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: ansible
+      - "{{item.portn}}":5000
+    with_items:
+      - { name: hashapp1 , portn: 3001 }
+      - { name: hashapp2 , portn: 3002 }
+      - { name: hashapp3 , portn: 3003 }
