@@ -31,12 +31,15 @@
 
 - name: copie des sources dans /var/www/html
   copy:
-    src: ~/hashsvccli/hashservice-client/*
+    src: "{{item}}"
     dest: /var/www/html/
     owner: apache
     group: apache
     mode: '0644'
     remote_src: yes
+  with_items:
+    - ~/hashsvccli/hashservice-client/index.html
+    - ~/hashsvccli/hashservice-client/index.js
 
 
 # - name: mise a jour de l'ip
