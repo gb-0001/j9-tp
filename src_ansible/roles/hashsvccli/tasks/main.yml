@@ -31,15 +31,15 @@
 
 - name: copie des sources dans /var/www/html
   copy:
-    src: "{{item}}"
-    dest: /var/www/html/
+    src: "{{item.pathsrc}}"
+    dest: "{{item.pathdst}}"
     owner: apache
     group: apache
     mode: '0644'
     remote_src: yes
   with_items:
-    - ~/hashsvccli/hashservice-client/index.html
-    - ~/hashsvccli/hashservice-client/index.js
+    - { pathsrc: ~/hashsvccli/hashservice-client/index.html , pathdst: /var/www/html/index.html}
+    - { pathsrc: ~/hashsvccli/hashservice-client/index.js , pathdst: /var/www/html/index.js }
 
 
 # - name: mise a jour de l'ip
