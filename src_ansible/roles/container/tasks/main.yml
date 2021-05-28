@@ -42,7 +42,7 @@
     state: started
     forcekill: yes
     ports:
-      - "{{item.portn}}":5000
+      - "{{item.portn}}:5000"
     with_items:
       - { name: hashapp1 , portn: 3001 }
       - { name: hashapp2 , portn: 3002 }
