@@ -16,11 +16,11 @@
     dest: /var/www/html
     remote_src: yes
 
-- name: mise a jour du fichier nsca.cfg    - (Debug:install_NSCA.yml)
-  lineinfile:
-    dest: /var/www/html/index.js
-    regexp: ^API_URL = "http://localhost:3000/"
-    line: "API_URL = "http://{{'ansible_host'}}:3000/""
+# - name: mise a jour du fichier nsca.cfg    - (Debug:install_NSCA.yml)
+#   lineinfile:
+#     dest: /var/www/html/index.js
+#     regexp: ^API_URL = "http://localhost:3000/"
+#     line: "API_URL = "http://{{'ansible_host'}}:3000/""
 
 - name: Installation httpd             - (Debug:install_package.yml )
   yum:
