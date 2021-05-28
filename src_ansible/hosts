@@ -4,14 +4,15 @@ ansible_connection=ssh
 ansible_user=vagrant
 ansible_pass=vagrant
 
-ubuntu1 ansible_ssh_host=192.168.33.51 ansible_host=192.168.33.51
-ubuntu2 ansible_ssh_host=192.168.33.52 ansible_host=192.168.33.52
-centos7 ansible_ssh_host=192.168.33.53 ansible_host=192.168.33.53
+#ip au lieu du hostname car la resolution de nom ne fonctionne pas
+192.168.33.51 ansible_host=192.168.33.51
+192.168.33.52 ansible_host=192.168.33.52
+192.168.33.53 ansible_host=192.168.33.53
 
 [group1]
-ubuntu1
-ubuntu2
+192.168.33.51
+192.168.33.52
 
 [group2]
-centos7
+192.168.33.53
 
