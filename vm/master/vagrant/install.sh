@@ -40,6 +40,14 @@ fi
 #install git, docker
 sudo apt -y install python3 python3-pip git docker docker-py ansible sshpass
 
+sudo apt -y install git
+
+sudo apt -y install ansible sshpass
+
+sudo apt -y install docker
+sudo pip3 install docker
+sudo pip install docker
+
 #Autorisation de l'acces jenkins
 ufw allow 8080/tcp
 

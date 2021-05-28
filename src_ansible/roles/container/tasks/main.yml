@@ -23,9 +23,9 @@
     url: "{{item.url1}}"
     dest: "{{item.dest1}}"
   with_items:
-    - { url1:  https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/Dockerfile , dest1: ~/hashapp/Dockerfile }
-    - { url1:  https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/requirements.txt , dest1: ~/hashapp/requirements.txt }
-    - { url1:  https://github.com/gb-0001/j9-tp/raw/master/src_microsvc/main.py , dest1: ~/hashapp/main.py }
+    - { url1: "https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/Dockerfile" , dest1: "~/hashapp/Dockerfile" }
+    - { url1: "https://github.com/gb-0001/j9-tp/raw/master/src_dockerfile/requirements.txt" , dest1: "~/hashapp/requirements.txt" }
+    - { url1: "https://github.com/gb-0001/j9-tp/raw/master/src_microsvc/main.py" , dest1: "~/hashapp/main.py" }
 
 - name: build image
   tags: build_image
