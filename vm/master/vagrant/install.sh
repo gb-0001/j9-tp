@@ -38,7 +38,7 @@ if [[ $RETOUR_USER_USERJOB != 0 ]]; then
 fi
 
 #install git, docker
-sudo apt -y python3 python3-pip git docker docker-py ansible sshpass
+sudo apt -y install python3 python3-pip git docker docker-py ansible sshpass
 
 #Autorisation de l'acces jenkins
 ufw allow 8080/tcp
